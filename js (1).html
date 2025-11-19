@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfólio Futurista • Head de Marketing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== ESTILO GERAL ===== */
+    body {
+      margin: 0;
+      background: #05010e;
+      font-family: "Inter", sans-serif;
+      color: #f8f8f8;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: "Rajdhani", sans-serif;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: 80px 6%;
+    }
+
+    a {
+      color: #8f5dfc;
+      text-decoration: none;
+    }
+
+    /* ===== ANIMAÇÕES GLOBAIS ===== */
+    .neon-glow {
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      0%   { text-shadow: 0 0 10px #8f5dfc; }
+      100% { text-shadow: 0 0 25px #c7a7ff; }
+    }
+
+    .typing {
+      width: 0;
+      overflow: hidden;
+      border-right: 3px solid #8f5dfc;
+      white-space: nowrap;
+      animation: typing 4s steps(35) forwards, blink 0.7s infinite;
+    }
+    @keyframes typing {
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      text-align: center;
+      padding-top: 140px;
+      background: linear-gradient(135deg, #070013, #190036, #1d0052);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* partículas no fundo */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://i.imgur.com/zY9ZQGZ.png");
+      opacity: 0.25;
+      animation: floatParticles 25s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes floatParticles {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-600px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 3.4vw, 3.2rem);
+      color: #b38aff;
+      margin-bottom: 12px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-cta {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 14px 34px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #8f5dfc, #4b2bb8);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 25px #8f5dfc66;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-cta:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 35px #c7a7ff88;
+    }
+
+    /* ===== SOBRE ===== */
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .about img {
+      width: 260px;
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #8f5dfc80;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills h2,
+    .metrics-title,
+    .cases-title {
+      text-align: center;
+      color: #b38aff;
+      margin-bottom: 40px;
+    }
+
+    .skill {
+      margin-bottom: 20px;
+    }
+
+    .skill-name {
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+      opacity: 0.9;
+    }
+
+    .skill-bar {
+      background: #140532;
+      height: 12px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .skill-level {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #8f5dfc, #4b2bb8);
+      animation: growBar 2s forwards;
+    }
+
+    @keyframes growBar {
+      to { width: var(--w); }
+    }
+
+    /* ===== MÉTRICAS ===== */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 22px;
+    }
+
+    .metric-box {
+      background: #12072a;
+      border-radius: 16px;
+      padding: 32px 20px;
+      text-align: center;
+      box-shadow: 0 0 20px #8f5dfc33;
+    }
+
+    .metric-number {
+      font-size: 2.4rem;
+      color: #d7c9ff;
+      font-weight: 700;
+    }
+
+    .metric-label {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-top: 6px;
+    }
+
+    /* ===== CASES ===== */
+    .cases {
+      margin-top: 40px;
+    }
+
+    .case-card {
+      background: #12072a;
+      padding: 24px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 18px #8f5dfc40;
+    }
+
+    .case-title {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #e5ddff;
+    }
+
+    .case-desc {
+      font-size: 0.95rem;
+      opacity: 0.88;
+    }
+
+    .case-tags {
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #8f5dfc22;
+      color: #c7a7ff;
+      font-size: 0.78rem;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 40px 10px;
+      background: #070013;
+      color: #b3b3b3;
+      font-size: 0.9rem;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 6%;
+      }
+
+      .hero {
+        padding-top: 110px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="typing neon-glow">
+        Head de Marketing • Growth • Branding • Estratégia
+      </h1>
+      <p class="subtitle">
+        Criação e liderança de máquinas de crescimento, posicionamento forte e campanhas de alto impacto.
+      </p>
+      <a href="#about" class="hero-cta">Ver portfólio completo</a>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="about">
+    <div class="about">
+      <img src="https://i.imgur.com/0ZfR5C2.jpeg" alt="Foto profissional">
+      <div class="about-text">
+        <h2 class="neon-glow">Quem Sou</h2>
+        <p>
+          Head de Marketing com experiência em growth, performance, branding e liderança de equipes multidisciplinares.
+          Minha atuação combina **visão estratégica**, **criatividade** e **leitura profunda de dados**.
+        </p>
+        <p>
+          Já liderei projetos com múltiplos canais (Meta Ads, Google Ads, Social, Influencers, CRM) e estruturei
+          operações com resultados consistentes em faturamento, retenção e posicionamento de marca.
+        </p>
+        <p>
+          Meu foco é simples: **crescimento previsível e sustentável**, construindo marcas que as pessoas lembram,
+          confiam e recomendam.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills">
+    <h2 class="skills-title neon-glow">Competências Principais</h2>
+
+    <div class="skill">
+      <div class="skill-name">Estratégia & High Level Planning</div>
+      <div class="skill-bar">
+        <div class="skill-level" style="--w: 95%;"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">Growth Marketing • Performance • Aquisição</div>
+      <div class="skill-bar">
+        <div class="skill-level" style="--w: 92%;"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">Branding Avançado • Storytelling • Posicionamento</div>
+      <div class="skill-bar">
+        <div class="skill-level" style="--w: 97%;"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">Copywriting • Criativos de Alta Conversão</div>
+      <div class="skill-bar">
+        <div class="skill-level" style="--w: 98%;"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-name">Liderança • Gestão de Times & Projetos</div>
+      <div class="skill-bar">
+        <div class="skill-level" style="--w: 90%;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS -->
+  <section>
+    <h2 class="metrics-title neon-glow">Resultados & Métricas</h2>
+
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <div class="metric-number">+65M</div>
+        <div class="metric-label">Impressões geradas em campanhas</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-number">+420%</div>
+        <div class="metric-label">Crescimento em faturamento anual</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-number">12x</div>
+        <div class="metric-label">Aumento de receita em operação escalada</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-number">+32</div>
+        <div class="metric-label">Marcas reposicionadas com sucesso</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="cases">
+    <h2 class="cases-title neon-glow">Cases de Sucesso Selecionados</h2>
+
+    <div class="case-card">
+      <div class="case-title">🚀 Escala Massiva em 90 dias</div>
+      <p class="case-desc">
+        Estruturei um funil de aquisição completo (topo, meio e fundo) com criativos segmentados,
+        testes A/B contínuos e CRM integrado. Resultado: <strong>+420% de crescimento</strong> em 90 dias
+        e redução de CPL em 38%.
+      </p>
+      <div class="case-tags">
+        <span class="tag">Growth</span>
+        <span class="tag">Meta Ads</span>
+        <span class="tag">Funil Completo</span>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">🎯 Reposicionamento Premium</div>
+      <p class="case-desc">
+        Rebranding total: identidade visual, tom de voz, manifesto, campanha de lançamento e estratégia
+        de preço. A marca saiu de player local para referência regional, com aumento de
+        <strong>12x no faturamento</strong> em menos de 1 ano.
+      </p>
+      <div class="case-tags">
+        <span class="tag">Branding</span>
+        <span class="tag">Storytelling</span>
+        <span class="tag">Rebranding</span>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">📈 Funil de Alta Conversão & Performance</div>
+      <p class="case-desc">
+        Estruturei um modelo de funil previsível, com foco em CAC, LTV e retenção, usando análises de
+        coorte, dashboards em tempo real e times alinhados em torno de metas claras de crescimento.
+      </p>
+      <div class="case-tags">
+        <span class="tag">CRO</span>
+        <span class="tag">Dados & Métricas</span>
+        <span class="tag">Estratégia</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 • Portfólio Futurista de Head de Marketing • Criado para apresentar estratégia, growth e branding em alto nível.
+    <br>
+    Contato: <a href="mailto:contato@seudominio.com">contato@seudominio.com</a>
+  </footer>
+
+  <!-- ===== CDN JSDELIVR: ScrollReveal ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
+
+  <!-- ===== SCRIPT DE ANIMAÇÃO COM SCROLLREVEAL ===== -->
+  <script>
+    // Configuração base
+    const sr = ScrollReveal({
+      distance: '40px',
+      duration: 900,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    // Hero
+    sr.reveal('.hero-content', { origin: 'top' });
+
+    // Sobre
+    sr.reveal('.about img',   { origin: 'left',  delay: 200 });
+    sr.reveal('.about-text',  { origin: 'right', delay: 250 });
+
+    // Skills
+    sr.reveal('.skills-title', { origin: 'bottom' });
+    sr.reveal('.skill',        { origin: 'bottom', interval: 120 });
+
+    // Métricas
+    sr.reveal('.metrics-title', { origin: 'bottom' });
+    sr.reveal('.metric-box',    { origin: 'bottom', interval: 140 });
+
+    // Cases
+    sr.reveal('.cases-title', { origin: 'bottom' });
+    sr.reveal('.case-card',   { origin: 'left', interval: 160 });
+  </script>
+
+</body>
+</html>

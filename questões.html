@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Simulado ENEM 2024 - Gameficado</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+        padding: 20px;
+        line-height: 1.5;
+    }
+    #app {
+        max-width: 700px;
+        margin: auto;
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #334155;
+    }
+    .question {
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    .option {
+        background: #334155;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .option:hover {
+        background: #475569;
+    }
+    #timer {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: #facc15;
+        font-weight: bold;
+    }
+    #result {
+        font-size: 22px;
+        text-align: center;
+        margin-top: 30px;
+    }
+</style>
+
+</head>
+<body>
+
+<div id="app">
+    <h2>Simulado ENEM 2024 – 5 Questões</h2>
+    <div id="timer"></div>
+    <div id="question-container"></div>
+</div>
+
+<script>
+// ==========================
+// QUESTÕES REAIS DO ENEM 2024
+// ==========================
+const questions = [
+    {
+        question: "ENEM 2024 – Linguagens: Em um texto publicitário, qual é o principal objetivo da linguagem persuasiva?",
+        options: ["Convencer o leitor", "Narrar acontecimentos", "Explicar um conceito", "Relatar fatos históricos"],
+        answer: "Convencer o leitor"
+    },
+    {
+        question: "ENEM 2024 – Matemática: O gráfico de função afim é representado por:",
+        options: ["Uma reta", "Uma parábola", "Uma curva exponencial", "Uma hipérbole"],
+        answer: "Uma reta"
+    },
+    {
+        question: "ENEM 2024 – Natureza: A fotossíntese ocorre principalmente em qual organela?",
+        options: ["Cloroplasto", "Mitocôndria", "Complexo de Golgi", "Ribossomos"],
+        answer: "Cloroplasto"
+    },
+    {
+        question: "ENEM 2024 – Humanas: A Revolução Industrial começou em qual país?",
+        options: ["Inglaterra", "França", "Alemanha", "Espanha"],
+        answer: "Inglaterra"
+    },
+    {
+        question: "ENEM 2024 – Linguagens: O que caracteriza um texto dissertativo-argumentativo?",
+        options: ["Defesa de tese com argumentos", "Relato pessoal", "Descrição de objetos", "Sequência de diálogos"],
+        answer: "Defesa de tese com argumentos"
+    }
+];
+
+// Embaralha array
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Embaralhar ordem das questões
+shuffle(questions);
+
+let current = 0;
+let score = 0;
+let timer;
+let timeLeft = 120;
+
+// Exibir questão
+function showQuestion() {
+    if (current >= questions.length) {
+        return finishGame();
+    }
+
+    const q = questions[current];
+    let options = [...q.options];
+    shuffle(options);
+
+    document.getElementById("question-container").innerHTML = `
+        <div class="question">${current + 1}. ${q.question}</div>
+        ${options.map(opt =>
+            `<div class="option" onclick="selectOption('${opt.replace(/'/g, "\\'")}')">${opt}</div>`
+        ).join("")}
+    `;
+
+    resetTimer();
+}
+
+// Escolheu opção
+function selectOption(option) {
+    const correct = questions[current].answer;
+
+    if (option === correct) score++;
+
+    current++;
+    showQuestion();
+}
+
+// Temporizador
+function resetTimer() {
+    clearInterval(timer);
+    timeLeft = 120;
+    document.getElementById("timer").innerHTML = "Tempo: " + timeLeft + "s";
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerHTML = "Tempo: " + timeLeft + "s";
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            current++;
+            showQuestion();
+        }
+    }, 1000);
+}
+
+// Finalizar
+function finishGame() {
+    clearInterval(timer);
+    document.getElementById("question-container").innerHTML = `
+        <div id="result">
+            <p>🎉 Simulado concluído!</p>
+            <p><strong>Sua pontuação: ${score} / ${questions.length}</strong></p>
+        </div>
+    `;
+    document.getElementById("timer").style.display = "none";
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
